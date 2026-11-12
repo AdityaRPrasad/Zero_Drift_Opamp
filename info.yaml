@@ -1,5 +1,5 @@
 # Tiny Tapeout project information
-project:        "Low-Power Zero Drift Opamp"
+project:        
   title:        "Zero-Drift Amplifiers"      # Project title
   author:       ""      # Your name
   discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)

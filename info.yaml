@@ -1,5 +1,5 @@
 # Tiny Tapeout project information
-project:
+project: 
   title:        "tt_um_Zero_Drift_Opamp"      # Project title
   author:       ""      # Your name
   discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)

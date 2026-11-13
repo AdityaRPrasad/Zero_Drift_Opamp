@@ -155,7 +155,7 @@ def build_common_centroid_array(comp: gf.Component, dev_type: str, w_finger: flo
 # 5. MAIN TOP-LEVEL CELL
 # ==============================================================================
 @gf.cell
-def tt_um_spread_spectrum_opamp() -> gf.Component:
+def tt_um_Zero_Drift_Opamp() -> gf.Component:
     c = gf.Component()
 
     # PR Boundary & Power Rails
@@ -224,8 +224,8 @@ def tt_um_spread_spectrum_opamp() -> gf.Component:
 
 if __name__ == "__main__":
     os.makedirs("gds", exist_ok=True)
-    layout = tt_um_spread_spectrum_opamp()
-    out_file = "gds/tt_um_yourname_spread_spectrum_opamp.gds"
+    layout = tt_um_Zero_Drift_Opamp()
+    out_file = "gds/tt_um_Zero_Drift_Opamp.gds"
     layout.write_gds(out_file)
     print(f"Successfully generated layout: {out_file}")
     print(f"Bounding box: {layout.xmax - layout.xmin:.2f} x {layout.ymax - layout.ymin:.2f} um")

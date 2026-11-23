@@ -1,1 +1,75 @@
-
+VERSION 5.7 ;
+BUSBITCHARS "[]" ;
+DIVIDERCHAR "/" ;
+MACRO tt_um_Zero_Drift_Opamp
+  CLASS BLOCK ;
+  FOREIGN tt_um_Zero_Drift_Opamp 0.000 0.000 ;
+  ORIGIN 0.000 0.000 ;
+  SIZE 161.000 BY 225.760 ;
+  SYMMETRY X Y R90 ;
+  PIN VPWR
+    DIRECTION INOUT ;
+    USE POWER ;
+    PORT
+      LAYER met4 ;
+        RECT 9.000 10.000 11.000 215.760 ;
+    END
+  END VPWR
+  PIN VGND
+    DIRECTION INOUT ;
+    USE GROUND ;
+    PORT
+      LAYER met4 ;
+        RECT 155.500 10.000 157.500 215.760 ;
+    END
+  END VGND
+  PIN ua[0]
+    DIRECTION INOUT ;
+    USE ANALOG ;
+    PORT
+      LAYER met4 ;
+        RECT 151.810 0.000 152.710 1.000 ;
+    END
+  END ua[0]
+  PIN ua[1]
+    DIRECTION INOUT ;
+    USE ANALOG ;
+    PORT
+      LAYER met4 ;
+        RECT 132.490 0.000 133.390 1.000 ;
+    END
+  END ua[1]
+  PIN ua[2]
+    DIRECTION INOUT ;
+    USE ANALOG ;
+    PORT
+      LAYER met4 ;
+        RECT 113.170 0.000 114.070 1.000 ;
+    END
+  END ua[2]
+  PIN ua[3]
+    DIRECTION INOUT ;
+    USE ANALOG ;
+    PORT
+      LAYER met4 ;
+        RECT 93.850 0.000 94.750 1.000 ;
+    END
+  END ua[3]
+  PIN ui_in[0]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER met4 ;
+        RECT 138.310 224.760 138.610 225.760 ;
+    END
+  END ui_in[0]
+  PIN ui_in[1]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER met4 ;
+        RECT 135.550 224.760 135.850 225.760 ;
+    END
+  END ui_in[1]
+END tt_um_Zero_Drift_Opamp
+END LIBRARY

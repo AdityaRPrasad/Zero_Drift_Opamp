@@ -224,8 +224,65 @@ def tt_um_Zero_Drift_Opamp() -> gf.Component:
 
 if __name__ == "__main__":
     os.makedirs("gds", exist_ok=True)
+    os.makedirs("lef", exist_ok=True)
     layout = tt_um_Zero_Drift_Opamp()
-    out_file = "gds/tt_um_Zero_Drift_Opamp.gds"
-    layout.write_gds(out_file)
-    print(f"Successfully generated layout: {out_file}")
+
+    out_file_gds = "gds/tt_um_Zero_Drift_Opamp.gds"
+    out_file_lef = "lef/tt_um_Zero_Drift_Opamp.lef"
+
+    layout.write_gds(out_file_gds)
+
+    # Generate the matching Tiny Tapeout LEF abstract directly from your pin definitions
+    lef_lines = [
+        "VERSION 5.7 ;",
+        'BUSBITCHARS "[]" ;',
+        'DIVIDERCHAR "/" ;',
+        "MACRO tt_um_Zero_Drift_Opamp",
+        "  CLASS BLOCK ;",
+        "  FOREIGN tt_um_Zero_Drift_Opamp 0.000 0.000 ;",
+        "  ORIGIN 0.000 0.000 ;",
+        f"  SIZE {TILE_W:.3f} BY {TILE_H:.3f} ;",
+        "  SYMMETRY X Y R90 ;",
+    ]
+
+    # Add Power Pins (VPWR, VGND)
+    for rail, px in POWER_X.items():
+        use_type = "POWER" if rail == "VPWR" else "GROUND"
+        lef_lines.extend([
+            f"  PIN {rail}",
+            "    DIRECTION INOUT ;",
+            f"    USE {use_type} ;",
+            "    PORT",
+            "      LAYER met4 ;",
+            f"        RECT {px - 1.0:.3f} 10.000 {px + 1.0:.3f} {TILE_H - 10.0:.3f} ;",
+            "    END",
+            f"  END {rail}",
+        ])
+
+    # Add Analog & Digital Pins from DEF_PINS
+    for pin_name, (px, py, pw, ph) in DEF_PINS.items():
+        direction = "INPUT" if pin_name.startswith("ui_in") else "INOUT"
+        use_type = "ANALOG" if pin_name.startswith("ua") else "SIGNAL"
+        lef_lines.extend([
+            f"  PIN {pin_name}",
+            f"    DIRECTION {direction} ;",
+            f"    USE {use_type} ;",
+            "    PORT",
+            "      LAYER met4 ;",
+            f"        RECT {px - pw/2:.3f} {py - ph/2:.3f} {px + pw/2:.3f} {py + ph/2:.3f} ;",
+            "    END",
+            f"  END {pin_name}",
+        ])
+
+    lef_lines.extend([
+        "END tt_um_Zero_Drift_Opamp",
+        "END LIBRARY",
+        ""
+    ])
+
+    with open(out_file_lef, "w") as f:
+        f.write("\n".join(lef_lines))
+
+    print(f"Successfully generated layout: {out_file_gds}")
+    print(f"Successfully generated LEF: {out_file_lef}")
     print(f"Bounding box: {layout.xmax - layout.xmin:.2f} x {layout.ymax - layout.ymin:.2f} um")

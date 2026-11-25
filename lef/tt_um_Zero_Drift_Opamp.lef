@@ -47,14 +47,6 @@ MACRO tt_um_Zero_Drift_Opamp
         RECT 113.170 0.000 114.070 1.000 ;
     END
   END ua[2]
-  PIN ua[3]
-    DIRECTION INOUT ;
-    USE ANALOG ;
-    PORT
-      LAYER met4 ;
-        RECT 93.850 0.000 94.750 1.000 ;
-    END
-  END ua[3]
   PIN ui_in[0]
     DIRECTION INPUT ;
     USE SIGNAL ;

@@ -36,7 +36,6 @@ DEF_PINS = {
     "ua[0]":    (152.26, 0.50,   0.90, 1.00),
     "ua[1]":    (132.94, 0.50,   0.90, 1.00),
     "ua[2]":    (113.62, 0.50,   0.90, 1.00),
-    "ua[3]":    (94.30,  0.50,   0.90, 1.00),
     "ui_in[0]": (138.46, 225.26, 0.30, 1.00),
     "ui_in[1]": (135.70, 225.26, 0.30, 1.00),
 }
@@ -154,9 +153,9 @@ def build_common_centroid_array(comp: gf.Component, dev_type: str, w_finger: flo
 # ==============================================================================
 # 5. MAIN TOP-LEVEL CELL
 # ==============================================================================
-@gf.cell
+
 def tt_um_Zero_Drift_Opamp() -> gf.Component:
-    c = gf.Component()
+    c = gf.Component("tt_um_Zero_Drift_Opamp")
 
     # PR Boundary & Power Rails
     c.add_polygon([(0, 0), (TILE_W, 0), (TILE_W, TILE_H), (0, TILE_H)], layer=LAYER_PR_BND)
@@ -201,10 +200,28 @@ def tt_um_Zero_Drift_Opamp() -> gf.Component:
         for sx, sy in diff_terms[dev]["S"]:
             route_manhattan(c, [(sx, sy), (sx, 44.5)], 0.3, LAYER_MET1)
     route_manhattan(c, [(37.0, 44.5), (118.0, 44.5), (mtail_cx + 0.5, 23.2)], 0.5, LAYER_MET1)
+    # Connect ua[0] (INP) to input switch 0 (horizontal track at y=4.0)
+    sw0_x, sw0_y = (sw_refs[0].xmin + sw_refs[0].xmax) / 2.0, sw_refs[0].ymin + 0.5
+    add_via_stack(c, x=sw0_x, y=sw0_y, bottom_met=1, top_met=4)
+    route_manhattan(
+        c,
+        [(sw0_x, sw0_y), (sw0_x, 4.0), (DEF_PINS["ua[0]"][0], 4.0), (DEF_PINS["ua[0]"][0], 0.50)],
+        0.85,
+        LAYER_MET4,
+    )
 
-    # Route net_bias to ua[3]
-    add_via_stack(c, x=94.30, y=26.5, bottom_met=1, top_met=4)
-    route_manhattan(c, [(94.30, 26.5), (94.30, 0.50)], 0.8, LAYER_MET4)
+    # Connect ua[1] (INN) to input switch 1 (horizontal track at y=6.0)
+    sw1_x, sw1_y = (sw_refs[1].xmin + sw_refs[1].xmax) / 2.0, sw_refs[1].ymin + 0.5
+    add_via_stack(c, x=sw1_x, y=sw1_y, bottom_met=1, top_met=4)
+    route_manhattan(
+        c,
+        [(sw1_x, sw1_y), (sw1_x, 6.0), (DEF_PINS["ua[1]"][0], 6.0), (DEF_PINS["ua[1]"][0], 0.50)],
+        0.85,
+        LAYER_MET4,
+    )
+
+   
+   
 
     # Connect to Output Driver (M5) and ua[2]
     m5_dx = m5.xmax - 0.5

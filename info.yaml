@@ -1,7 +1,7 @@
 # Tiny Tapeout project information
 project:        
   title:        "Zero-Drift Amplifiers"      # Project title
-  author:       "Aditya"      # Your name
+  author:       "Aditya R Prasad, Harsha S"      # Your name
   discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  "Zero-Drift Operational Amplifiers"      # One line description of what your project does
   language:     "Analog" # other examples include Verilog, Amaranth, VHDL, etc

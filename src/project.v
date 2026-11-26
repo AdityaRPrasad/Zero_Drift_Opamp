@@ -1,11 +1,12 @@
 /*
- * Copyright (c) 2024 Your Name
+ * Copyright (c) 2024 Aditya R Prasad
  * SPDX-License-Identifier: Apache-2.0
  */
 
 `default_nettype none
 
-module tt_um_example (
+(* blackbox *)
+module tt_um_Zero_Drift_Opamp (
     input  wire       VGND,
     input  wire       VDPWR,    // 1.8v power supply
 //    input  wire       VAPWR,    // 3.3v power supply

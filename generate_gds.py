@@ -332,11 +332,9 @@ def tt_um_Zero_Drift_Opamp() -> gf.Component:
     # Place ALL 53 Official Tiny Tapeout Template Pins (met4, met4.pin, met4.label)
     for pin_name, info in TEMPLATE_PINS.items():
         xmin, ymin, xmax, ymax = info["bbox"]
-        pw, ph = info["w"], info["h"]
-        p_draw = c << gf.components.rectangle(size=(pw, ph), layer=LAYER_MET4)
-        p_draw.move((xmin, ymin))
-        p_pin = c << gf.components.rectangle(size=(pw, ph), layer=LAYER_MET4_PIN)
-        p_pin.move((xmin, ymin))
+        rect_pts = [(xmin, ymin), (xmax, ymin), (xmax, ymax), (xmin, ymax)]
+        c.add_polygon(rect_pts, layer=LAYER_MET4)
+        c.add_polygon(rect_pts, layer=LAYER_MET4_PIN)
         c.add_label(text=pin_name, position=(info["cx"], info["cy"]), layer=LAYER_MET4_LBL)
 
     pwr_name = "VDPWR" if "VDPWR" in TEMPLATE_PINS else "VPWR"
@@ -425,6 +423,7 @@ if __name__ == "__main__":
     os.makedirs("gds", exist_ok=True)
     os.makedirs("lef", exist_ok=True)
     layout = tt_um_Zero_Drift_Opamp()
+    layout.flatten()
 
     out_file_gds = "gds/tt_um_Zero_Drift_Opamp.gds"
     out_file_lef = "lef/tt_um_Zero_Drift_Opamp.lef"

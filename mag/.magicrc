@@ -1,0 +1,5 @@
+if {[info exists env(PDK_ROOT)]} {
+    source $env(PDK_ROOT)/sky130A/libs.tech/magic/sky130A.magicrc
+} else {
+    puts stderr "ERROR: PDK_ROOT environment variable is not set."
+}

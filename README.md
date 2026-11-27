@@ -1,3 +1,9 @@
+![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg)
+
+# Zero-Drift Operational Amplifiers
+
+- [Read the documentation for project](docs/info.md)
+
 How it works
 tt_um_Zero_Drift_Opamp is a custom-layout zero-drift operational amplifier built on the SkyWater 130 nm (sky130A) process, occupying a 1x2 analog tile footprint. It operates from a single 1.8 V power supply (VDPWR / VGND; the 3.3 V VAPWR rail is not used) with internal on-chip biasing, requiring only three analog pins (INP, INN, OUT) and one digital clock input (clk_in).
 

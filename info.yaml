@@ -1,9 +1,9 @@
 # Tiny Tapeout project information
 project:        
-  title:        "Zero-Drift Amplifiers"      # Project title
-  author:       "Aditya R Prasad, Harsha S"      # Your name
-  discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "Zero-Drift Operational Amplifiers"      # One line description of what your project does
+  title:        "Zero-Drift Operational Amplifiers"      # Project title
+  author:       "Aditya R Prasad, Harsha S, Chethan S P, Shylashree N, RV College of Engineering"      
+  discord:      ""     
+  description:  "Zero-drift op-amp on a 1x2 Sky130 analog tile with internal biasing, external clock input (ui[0]), and a Python-generated GDS layout."
   language:     "Analog" # other examples include Verilog, Amaranth, VHDL, etc
   clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
 

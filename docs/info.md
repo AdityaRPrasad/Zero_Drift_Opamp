@@ -7,6 +7,9 @@ You can also include images in this folder and reference them in the markdown. E
 512 kb in size, and the combined size of all images must be less than 1 MB.
 -->
 
+## Credits
+We gratefully acknowledge the Center of Excellence (CoE) in Integrated Circuits and Systems (ICAS) and the Department of Electronics and Communication Engineering (ECE) for providing the necessary resources and guidance. Special thanks to Dr. H V Ravish Aradhya (HoD- ECE), Dr. K R Usha Rani (Associate Dean-PG), Dr. K. S. Geetha (Vice Principal) and Dr. K. N. Subramanya (Principal) for their constant encouragement and support in facilitating this Tiny Tapeout SKY26E submission.
+
 ## How it works
 
 `tt_um_Zero_Drift_Opamp` is a custom-layout zero-drift operational amplifier built on the SkyWater 130 nm (`sky130A`) process, occupying a `1x2` analog tile footprint. It operates from a single 1.8 V power supply (`VDPWR` / `VGND`; the 3.3 V `VAPWR` rail is not used) with internal on-chip biasing, requiring only three analog pins (`INP`, `INN`, `OUT`) and one digital clock input (`clk_in`).
